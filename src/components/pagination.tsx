@@ -51,8 +51,13 @@ async function fetchProducts(skip: number, limit: number, q: string, category: s
   if (category) {
     url = `https://dummyjson.com/products/category/${category}?limit=${limit}&skip=${skip}`;
   }
-  const response = await axios.get<ProductsResData>(url);
-  return response.data;
+  try {
+    const response = await axios.get<ProductsResData>(url);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch data")
+  }
+
 }
 
 function Products() {
