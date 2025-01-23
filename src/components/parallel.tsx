@@ -14,7 +14,7 @@ const Parallel = () => {
     const [userIds, setUserIds] = useState<number[]>([1, 2]);
 
     // Fetch user data in parallel
-    const userQueries: UseQueryResult<User, Error>[] = useQueries({
+    const userQueries: UseQueryResult<User>[] = useQueries({
         queries: userIds.map((id) => ({
             queryKey: ['user', id],
             queryFn: async (): Promise<User> => {
